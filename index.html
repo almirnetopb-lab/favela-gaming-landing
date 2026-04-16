@@ -18,7 +18,7 @@
   <!-- ═══════════════ MENU / NAV ═══════════════ -->
   <nav class="menu">
     <a href="#" class="menu__logo">
-      <img src="assets/img/fg-logo-header.png" alt="Favela Gaming">
+      <img src="assets/img/fg-logo-header.svg" alt="Favela Gaming">
     </a>
     <ul class="menu__links">
       <li><a href="#hero">Home</a></li>
@@ -26,12 +26,20 @@
       <li><a href="#pilares">Competitivo</a></li>
       <li><a href="#lab-movel">Cria de Quebrada</a></li>
     </ul>
+    <button class="menu__hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section id="hero" class="hero">
     <div class="hero__bg">
-      <img src="assets/img/hero-bg.jpg" alt="" class="hero__bg-img">
+      <picture>
+        <source media="(max-width: 768px)" srcset="assets/img/hero-bg-mobile.jpg">
+        <img src="assets/img/hero-bg.jpg" alt="" class="hero__bg-img">
+      </picture>
       <div class="hero__gradient-bottom"></div>
     </div>
 
@@ -58,7 +66,9 @@
     <div class="sobre__foto-principal">
       <img src="assets/img/sobre-foto.jpg" alt="Jovens em evento de comunidade">
       <div class="sobre__foto-overlay"></div>
-      <img src="assets/img/btn-play.png" alt="Play" class="sobre__btn-play">
+      <a href="https://www.youtube.com/watch?v=FA7CgbsCuoU" target="_blank" rel="noopener" class="sobre__btn-play-link">
+        <img src="assets/img/btn-play.svg" alt="Play" class="sobre__btn-play">
+      </a>
     </div>
     <div class="sobre__texto">
       <span class="sobre__label">SOBRE O PROJETO</span>
@@ -106,7 +116,7 @@
     <img src="assets/img/element-01.png" alt="" class="lab-movel__deco-bottom">
 
     <div class="lab-movel__info">
-      <h2 class="lab-movel__title">LAB MOVEL</h2>
+      <h2 class="lab-movel__title">LAB MÓVEL</h2>
       <div class="lab-movel__desc-block">
         <h3 class="lab-movel__subtitle">O laboratorio itinerante<br>de games nas comunidades</h3>
         <p class="lab-movel__desc">
@@ -207,27 +217,18 @@
     </div>
   </section>
 
-  <!-- ═══════════════ CTA AGENDA ═══════════════ -->
-  <section class="cta-agenda">
-    <a href="#lab-movel" class="cta-agenda__link">
-      <span class="cta-agenda__pre">Confira a agenda do</span>
-      <span class="cta-agenda__title">LAB MOVEL</span>
-      <span class="cta-agenda__arrow">&#8594;</span>
-    </a>
-  </section>
-
   <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer class="footer">
     <div class="footer__content">
       <div class="footer__brand">
-        <img src="assets/img/fg-logo-footer.png" alt="Favela Gaming" class="footer__logo">
+        <img src="assets/img/fg-logo-footer.svg" alt="Favela Gaming" class="footer__logo">
         <p class="footer__desc">
           Uma parceria Final Level, YouTube Gaming e Gerando Falcoes, o Favela Gaming foi feito para impulsionar
           talentos de grupos sub-representados e oferecer ferramentas de desenvolvimento profissional dentro do universo
           gamer.
         </p>
       </div>
-      <div class="footer__col">
+      <div class="footer__col footer__col--nav">
         <h4 class="footer__col-title">Navegacao</h4>
         <ul class="footer__col-list">
           <li><a href="#">Home</a></li>
@@ -237,7 +238,7 @@
           <li><a href="#">Cria de Quebrada</a></li>
         </ul>
       </div>
-      <div class="footer__col">
+      <div class="footer__col footer__col--social">
         <h4 class="footer__col-title">Redes Sociais</h4>
         <ul class="footer__col-list">
           <li><a href="#">YouTube</a></li>
@@ -246,7 +247,7 @@
           <li><a href="#">X / Twitter</a></li>
         </ul>
       </div>
-      <div class="footer__col">
+      <div class="footer__col footer__col--parceiros">
         <h4 class="footer__col-title footer__col-title--lg">Parceiros</h4>
         <ul class="footer__col-list footer__col-list--muted">
           <li>Claro</li>
@@ -276,6 +277,23 @@
           ticking = true;
         }
       }, { passive: true });
+    })();
+
+    (function () {
+      var pilares = document.querySelector('.pilares');
+      if (!pilares || !('IntersectionObserver' in window)) {
+        if (pilares) pilares.classList.add('is-visible');
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      observer.observe(pilares);
     })();
   </script>
 </body>
