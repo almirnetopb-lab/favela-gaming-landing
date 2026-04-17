@@ -219,7 +219,7 @@ img {
   align-items: center;
   gap: 88px;
   padding: 100px 392px 100px 392px;
-  min-height: 800px;
+  height: 800px;
   background: #fbf8f1;
   overflow: hidden;
 }
@@ -229,7 +229,7 @@ img {
   left: 0;
   top: 0;
   width: 392px;
-  height: 800px;
+  height: 100%;
 }
 
 .sobre__foto-lateral img {
